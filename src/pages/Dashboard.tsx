@@ -25,19 +25,28 @@ export const Dashboard = () => {
     });
   }, []);
   //add event listener for scroll to fetch more data
-  const handleScroll = (e: Event) => {
-    handleScrollD({
-      e,
-      loadingRef,
-      nextPage,
-      setUsersList,
-      setNextPage,
-      setError,
-    });
-  };
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", (e: Event) => {
+      handleScrollD({
+        e,
+        loadingRef,
+        nextPage,
+        setUsersList,
+        setNextPage,
+        setError,
+      });
+    });
+    return () =>
+      window.removeEventListener("scroll", (e: Event) => {
+        handleScrollD({
+          e,
+          loadingRef,
+          nextPage,
+          setUsersList,
+          setNextPage,
+          setError,
+        });
+      });
   }, []);
 
   return (

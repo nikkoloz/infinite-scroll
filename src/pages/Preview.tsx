@@ -51,19 +51,26 @@ export const Preview = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [id]);
-  const handleScroll = (e: Event) => {
-    handleScrollP({
-      e,
-      user,
-      loadingRef,
-      setFriendsList,
-      setError,
-    });
-  };
-
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", (e: Event) => {
+      handleScrollP({
+        e,
+        user,
+        loadingRef,
+        setFriendsList,
+        setError,
+      });
+    });
+    return () =>
+      window.removeEventListener("scroll", (e: Event) => {
+        handleScrollP({
+          e,
+          user,
+          loadingRef,
+          setFriendsList,
+          setError,
+        });
+      });
   }, [user]);
   return (
     <>
