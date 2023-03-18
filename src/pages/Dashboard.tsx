@@ -50,9 +50,9 @@ export const Dashboard = () => {
   }, []);
 
   return (
-    <div className="bg-main-blue mx-auto max-w-[1200px]">
+    <div className="mx-auto w-full">
       <div className="text-center ">
-        <h1 className="bg-slate-600 px-3 py-4 text-2xl  font-semibold text-white">
+        <h1 className=" px-3 py-4 text-2xl font-semibold tracking-widest text-main-blue">
           INFINITE SCROLL
         </h1>
       </div>

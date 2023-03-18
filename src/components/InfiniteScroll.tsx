@@ -8,7 +8,7 @@ type InfiniteScrollProps = {
 
 export const InfiniteScroll = ({ usersList }: InfiniteScrollProps) => {
   return (
-    <div className="mt-2 flex flex-wrap">
+    <div className="mt-2 flex flex-wrap max-w-[1200px] mx-auto">
       {usersList.map((user: ListObjectT) => (
         <Card key={uuid()} user={user} />
       ))}

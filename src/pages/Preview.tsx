@@ -47,7 +47,6 @@ export const Preview = () => {
       throw new Error("user is undefined");
     }
   }, [id]);
-
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [id]);
@@ -74,68 +73,90 @@ export const Preview = () => {
   }, [user]);
   return (
     <>
-      <div className="mx-auto max-w-[1200px] ">
-        <div className="relative mb-4 rounded-b-lg bg-slate-600 px-3  py-4 text-center text-white ">
+      <div className="mx-auto max-w-[1200px]">
+        <div className="relative mb-4 rounded-b-lg px-3  py-4 text-center text-black ">
           <Link to={ROUTES.DASHBOARD}>
-            <button className="absolute left-[20px] rounded-full border-none bg-slate-500  px-2 font-medium text-white">
-              Back
-            </button>
+            <h1 className="INFINITE SCROLL inline text-2xl font-semibold tracking-widest text-main-blue">
+              INFINITE SCROLL
+            </h1>
           </Link>
-          <h1 className="INFINITE SCROLL inline text-2xl  font-semibold">
-            INFINITE SCROLL
-          </h1>
         </div>
       </div>
       {user !== undefined && (
-        <div className="mx-auto max-w-[1200px]">
-          <div className="flex px-3">
-            <img
-              src={user?.imageUrl + "/" + id}
-              alt="img"
-              className="mr-4 h-[270px] w-[270px] rounded-lg"
-            />
-            <div className="relative w-full border border-black px-2 pt-2">
-              <p className="absolute top-[-15px] bg-white px-1 text-lg">Info</p>
-              <p className="font-bold">
+        <div className="mx-auto max-w-[1200px] px-10 ">
+          <div className="shadow- mx-auto mb-5 max-w-[450px] rounded-xl border border-gray-300 bg-white p-5 px-3 md800:flex md800:max-w-none md800:justify-around">
+            <div className="mt-3 flex flex-col">
+              <img
+                src={user?.imageUrl + "/" + id}
+                alt="img"
+                className=" mx-auto mb-3 h-[230px] w-[230px] rounded-full "
+              />
+              <p className=" text-center font-bold ">
                 {user?.prefix} {user.name} {user?.lastName}
               </p>
-              <p className="mb-4">{user.title}</p>
-              <div>
-                <p className="inline underline">Email: </p>
-                <p className="inline">{user.email}</p>
-              </div>
-              <div>
-                <p className="inline underline">Ip Addres: </p>
-                <p className="inline">{user.ip}</p>
-              </div>
-              <div>
-                <p className="inline underline">Job Area: </p>
-                <p className="inline">{user.jobArea}</p>
-              </div>
-              <div>
-                <p className="inline underline">Job Type: </p>
-                <p className="inline">{user.jobType}</p>
-              </div>
-            </div>
-            <div className="relative ml-4 border border-black px-2 pt-2">
-              <p className="absolute top-[-15px] bg-white px-1 text-lg">
-                Adress
-              </p>
-              <p className="font-bold">
+              <p className="mb-1 text-center text-gray-700">{user.title}</p>
+              <p className=" text-center text-gray-700">
                 {user.company.name} {user.company.suffix}
               </p>
-              <p className="underline">City: {user.address.city}</p>
-              <p className="underline">Country: {user.address.country}</p>
-              <p className="underline">
-                Street Address: {user.address.streetAddress}
+            </div>
+
+            <div className="relative mx-auto  mb-5 max-w-[570px] rounded-xl   px-2 pt-1 pb-3  lg:mx-0 lg:mb-0 lg:w-1/3 lg:max-w-none">
+              <p className=" mb-2 border-b-2 border-black border-opacity-25  px-1 text-lg text-main-blue">
+                Info
               </p>
-              <p className="underline">ZIP: {user.address.zipCode}</p>
+              <div className=" mb-2">
+                <p className=" font-bold text-gray-700">Email </p>
+                <p className=" inline text-gray-700">{user.email}</p>
+              </div>
+              <div className="mb-2">
+                <p className=" font-bold text-gray-700">Ip Address </p>
+                <p className=" inline text-gray-700">{user.ip}</p>
+              </div>
+              <div className="mb-2">
+                <p className=" font-bold text-gray-700">Job Area </p>
+                <p className=" inline text-gray-700">{user.jobArea}</p>
+              </div>
+              <div className="mb-2">
+                <p className=" font-bold text-gray-700">Job Type </p>
+                <p className=" inline text-gray-700">{user.jobType}</p>
+              </div>
+            </div>
+
+            <div className="relative mx-auto mb-4 max-w-[570px] rounded-xl px-2 pt-1 lg:mx-0 lg:w-1/3 lg:max-w-none">
+              <p className="mb-2 border-b-2 border-black border-opacity-25  px-1 text-lg text-main-blue">
+                Address
+              </p>
+              <div className="mb-2">
+                <p className="font-bold text-gray-700">City </p>
+                <span className=" font-normal text-gray-700">
+                  {user.address.city}
+                </span>
+              </div>
+              <div className="mb-2">
+                <p className="font-bold text-gray-700">Country </p>
+                <span className=" font-normal text-gray-700">
+                  {user.address.country}
+                </span>
+              </div>
+              <div className="mb-2">
+                <p className="font-bold text-gray-700">Street Address </p>
+                <span className=" font-normal text-gray-700">
+                  {user.address.streetAddress}
+                </span>
+              </div>
+              <div className="mb-2">
+                <p className="font-bold text-gray-700">ZIP</p>
+                <span className=" font-normal text-gray-700">
+                  {" "}
+                  {user.address.zipCode}
+                </span>
+              </div>
             </div>
           </div>
           <VisitedUsers visited={visited} />
-          <h2 className="mx-3">Friends:</h2>
+          <h2 className="mx-3 my-4 text-xl font-bold">Friends</h2>
           <InfiniteScroll usersList={friendsList} />
-          {loading && <h1>loading...</h1>}
+          {loading && <h1 className="font-bold">loading...</h1>}
         </div>
       )}
       {error && (

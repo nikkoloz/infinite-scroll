@@ -9,8 +9,6 @@ type Props = {
 const addVisited = ({ fetchedUser, visited, setVisited }: Props) => {
   if (fetchedUser === undefined) return;
   const isVisited = visited.some((item) => item.id === fetchedUser.id);
-  console.log("isVisited", isVisited);
-
   if (!isVisited) {
     setVisited(
       (prev) =>
