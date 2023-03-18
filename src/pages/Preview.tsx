@@ -54,19 +54,19 @@ export const Preview = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", (e) =>
-      handleScrollP({ e, user, loadingRef, setFriendsList })
+      handleScrollP({ e, user, loadingRef, setFriendsList, setError })
     );
     return () =>
       window.removeEventListener("scroll", (e) =>
-        handleScrollP({ e, user, loadingRef, setFriendsList })
+        handleScrollP({ e, user, loadingRef, setFriendsList, setError })
       );
   }, [user]);
   return (
     <>
-      <div className="max-w-[1200px] mx-auto ">
-        <div className="relative bg-slate-600 px-3 py-4 text-center  text-white mb-4 rounded-b-lg ">
+      <div className="mx-auto max-w-[1200px] ">
+        <div className="relative mb-4 rounded-b-lg bg-slate-600 px-3  py-4 text-center text-white ">
           <Link to={ROUTES.DASHBOARD}>
-            <button className="left-[20px] absolute rounded-full border-none bg-slate-500  px-2 font-medium text-white">
+            <button className="absolute left-[20px] rounded-full border-none bg-slate-500  px-2 font-medium text-white">
               Back
             </button>
           </Link>

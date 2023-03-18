@@ -8,6 +8,7 @@ type Props = {
   nextPage: number;
   setUsersList: React.Dispatch<React.SetStateAction<ListObjectT[]>>;
   setNextPage: React.Dispatch<React.SetStateAction<number>>;
+  setError: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export const handleScrollD = ({
@@ -16,11 +17,12 @@ export const handleScrollD = ({
   nextPage,
   setUsersList,
   setNextPage,
+  setError,
 }: Props): void => {
   if (!e.currentTarget) return;
   if (isScrolledToBottom() && !loadingRef.current) {
     loadingRef.current = true;
-    getUsers(nextPage).then((data: ResponseObjectT) => {
+    getUsers({ page: nextPage, setError }).then((data: ResponseObjectT) => {
       const fetchedUsersList: ListObjectT[] = data.list;
       setUsersList((prev) => [...prev, ...fetchedUsersList]);
       if (data.pagination.nextPage !== null) {

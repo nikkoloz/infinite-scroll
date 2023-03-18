@@ -7,6 +7,7 @@ type Props = {
   loadingRef: React.MutableRefObject<boolean>;
   setFriendsList: React.Dispatch<React.SetStateAction<ListObjectT[]>>;
   user: { id: number } | undefined;
+  setError: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export const handleScrollP = ({
@@ -14,14 +15,17 @@ export const handleScrollP = ({
   loadingRef,
   setFriendsList,
   user,
+  setError,
 }: Props): void => {
   if (!e.currentTarget) return;
   if (isScrolledToBottom() && !loadingRef.current && user?.id !== undefined) {
     loadingRef.current = true;
-    getFriends(user?.id, 1).then((data: ResponseObjectT) => {
-      const fetchedFriendsList: ListObjectT[] = data.list;
-      setFriendsList((prev) => [...prev, ...fetchedFriendsList]);
-      loadingRef.current = false;
-    });
+    getFriends({ id: user?.id, page: 1, setError }).then(
+      (data: ResponseObjectT) => {
+        const fetchedFriendsList: ListObjectT[] = data.list;
+        setFriendsList((prev) => [...prev, ...fetchedFriendsList]);
+        loadingRef.current = false;
+      }
+    );
   }
 };
