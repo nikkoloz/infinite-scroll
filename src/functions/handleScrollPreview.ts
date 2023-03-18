@@ -2,7 +2,7 @@ import isScrolledToBottom from "./isScrolledToBottom";
 import type { ListObjectT, ResponseObjectT } from "../types/types";
 import getFriends from "../http/getFriends";
 
-type Props = {
+type PropsP = {
   e: Event;
   loadingRef: React.MutableRefObject<boolean>;
   setFriendsList: React.Dispatch<React.SetStateAction<ListObjectT[]>>;
@@ -16,7 +16,7 @@ export const handleScrollP = ({
   setFriendsList,
   user,
   setError,
-}: Props): void => {
+}: PropsP): void => {
   if (!e.currentTarget) return;
   if (isScrolledToBottom() && !loadingRef.current && user?.id !== undefined) {
     loadingRef.current = true;
